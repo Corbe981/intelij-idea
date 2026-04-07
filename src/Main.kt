@@ -29,7 +29,21 @@ fun main() {
         mutableListOf(screening3, screening4)
     )
 
-    val films = listOf(film1, film2)
+    // Film 3
+    val seats5 = MutableList(10) { Seat("E${it + 1}") }
+    val seats6 = MutableList(10) { Seat("F${it + 1}") }
+
+    val screening5 = Screening("2026-04-12", "09:30", seats5)
+    val screening6 = Screening("2026-04-12", "17:30", seats6)
+
+    val film3 = Film(
+        "Titanic",
+        "Drama",
+        8.0,
+        mutableListOf(screening5, screening6)
+    )
+
+    val films = listOf(film1, film2, film3)
 
     val service = BookingService()
 
