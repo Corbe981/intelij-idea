@@ -43,7 +43,49 @@ fun main() {
         mutableListOf(screening5, screening6)
     )
 
-    val films = listOf(film1, film2, film3)
+    // Film 4
+    val seats7 = MutableList(10) { Seat("G${it + 1}") }
+    val seats8 = MutableList(10) { Seat("H${it + 1}") }
+
+    val screening7 = Screening("2026-04-13", "11:00", seats7)
+    val screening8 = Screening("2026-04-13", "19:00", seats8)
+
+    val film4 = Film(
+        "The Dark Knight",
+        "Action",
+        11.0,
+        mutableListOf(screening7, screening8)
+    )
+
+    // Film 5
+    val seats9 = MutableList(10) { Seat("I${it + 1}") }
+    val seats10 = MutableList(10) { Seat("J${it + 1}") }
+
+    val screening9 = Screening("2026-04-14", "10:30", seats9)
+    val screening10 = Screening("2026-04-14", "21:00", seats10)
+
+    val film5 = Film(
+        "Interstellar",
+        "Sci-Fi",
+        13.0,
+        mutableListOf(screening9, screening10)
+    )
+
+    // Film 6
+    val seats11 = MutableList(10) { Seat("K${it + 1}") }
+    val seats12 = MutableList(10) { Seat("L${it + 1}") }
+
+    val screening11 = Screening("2026-04-15", "09:00", seats11)
+    val screening12 = Screening("2026-04-15", "18:30", seats12)
+
+    val film6 = Film(
+        "Joker",
+        "Drama",
+        9.0,
+        mutableListOf(screening11, screening12)
+    )
+
+    val films = listOf(film1, film2, film3, film4, film5, film6)
 
     val service = BookingService()
 
