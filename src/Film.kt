@@ -1,6 +1,6 @@
 class Film(
     val title: String,
     val genre: String,
-    val price: Double,
+    val basePrice: Double,
     val screenings: MutableList<Screening>
 )

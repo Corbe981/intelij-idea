@@ -1,4 +1,4 @@
 class Seat(
-    val number: String,
+    val seatNumber: String,
     var isAvailable: Boolean = true
 )

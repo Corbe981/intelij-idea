@@ -1,6 +1,6 @@
 class Screening(
     val date: String,
-    val time: String,
+    val startTime: String,
     val seats: MutableList<Seat>,
-    var totalSales: Double = 0.0
+    var totalTakings: Double = 0.0
 )

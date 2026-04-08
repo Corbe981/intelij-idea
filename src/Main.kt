@@ -1,5 +1,3 @@
-
-
 fun main() {
     // Film 1
     val seats1 = MutableList(10) { Seat("A${it + 1}") }
