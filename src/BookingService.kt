@@ -3,7 +3,6 @@ class BookingService {
     fun searchFilms(films: List<Film>): Film? {
         println("Search film by title or genre:")
         val input = readLine()?.lowercase() ?: ""
-
         val results = films.filter {
             it.title.lowercase().contains(input) ||
             it.genre.lowercase().contains(input)
@@ -32,8 +31,8 @@ class BookingService {
     fun selectScreening(film: Film): Screening? {
         println("Available screenings:")
 
-        film.screenings.forEachIndexed { i, s ->
-            println("${i + 1}. ${s.date} ${s.time}")
+        film.screenings.forEachIndexed { i, screening ->
+            println("${i + 1}. ${screening.date} ${screening.startTime}")
         }
 
         println("Select screening:")
@@ -50,15 +49,15 @@ class BookingService {
     fun bookSeats(screening: Screening, film: Film) {
         println("Available seats:")
 
-        screening.seats.filter { it.isAvailable }.forEach {
-            print("${it.number} ")
+        screening.seats.filter { it.isAvailable }.forEach { seat ->
+            print("${seat.seatNumber} ")
         }
 
         println("\nEnter seats (e.g. A1,A2):")
         val input = readLine()?.split(",") ?: return
 
-        val selectedSeats = screening.seats.filter {
-            input.map { it.trim() }.contains(it.number) && it.isAvailable
+        val selectedSeats = screening.seats.filter { seat ->
+            input.map { it.trim() }.contains(seat.seatNumber) && seat.isAvailable
         }
 
         if (selectedSeats.isEmpty()) {
@@ -66,7 +65,7 @@ class BookingService {
             return
         }
 
-        val totalPrice = selectedSeats.size * film.price
+        val totalPrice = selectedSeats.size * film.basePrice
 
         println("Total price: £$totalPrice")
         println("Enter payment:")
@@ -78,8 +77,10 @@ class BookingService {
             return
         }
 
-        selectedSeats.forEach { it.isAvailable = false }
-        screening.totalSales += totalPrice
+        selectedSeats.forEach { seat ->
+            seat.isAvailable = false
+        }
+        screening.totalTakings += totalPrice
 
         printTicket(film, screening, selectedSeats, totalPrice)
     }
@@ -94,8 +95,8 @@ class BookingService {
         println("CINEMA NAME")
         println("Film: ${film.title}")
         println("Date: ${screening.date}")
-        println("Time: ${screening.time}")
-        println("Seats: ${seats.map { it.number }}")
+        println("Time: ${screening.startTime}")
+        println("Seats: ${seats.map { it.seatNumber }}")
         println("Price: £$price")
         println("*******************************")
     }
